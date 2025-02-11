@@ -69,12 +69,10 @@ body {
                     border-radius: 5px;
                     outline: none;
                     border: none;
-                    background-color: var(--bg-body);
+                    background-color: #ffffff;
                     transition: 0.3s ease-in-out;
                 }
-                input:focus {
-                    box-shadow: #EE7121 inset 0 -4px;
-                }
+             
                 #buttonbox {
                     display: flex;
                     justify-content: center;
@@ -100,5 +98,8 @@ body {
     }
 }
 
+img{
+   height: 120px;
+}
 
 
