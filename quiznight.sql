@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 10 fév. 2025 à 15:17
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mar. 11 fév. 2025 à 16:58
+-- Version du serveur : 9.1.0
+-- Version de PHP : 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,10 +27,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `animal`
 --
 
-CREATE TABLE `animal` (
-  `id_question` int(11) NOT NULL,
-  `questions` varchar(255) NOT NULL,
-  `reponses` varchar(255) NOT NULL
+DROP TABLE IF EXISTS `animal`;
+CREATE TABLE IF NOT EXISTS `animal` (
+  `id_question` int NOT NULL AUTO_INCREMENT,
+  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39,10 +41,12 @@ CREATE TABLE `animal` (
 -- Structure de la table `culture generale`
 --
 
-CREATE TABLE `culture generale` (
-  `id_question` int(11) NOT NULL,
-  `questions` varchar(255) NOT NULL,
-  `reponses` varchar(255) NOT NULL
+DROP TABLE IF EXISTS `culture generale`;
+CREATE TABLE IF NOT EXISTS `culture generale` (
+  `id_question` int NOT NULL AUTO_INCREMENT,
+  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -51,55 +55,35 @@ CREATE TABLE `culture generale` (
 -- Structure de la table `geographie`
 --
 
-CREATE TABLE `geographie` (
-  `id_question` int(11) NOT NULL,
-  `questions` varchar(255) NOT NULL,
-  `reponses` varchar(255) NOT NULL
+DROP TABLE IF EXISTS `geographie`;
+CREATE TABLE IF NOT EXISTS `geographie` (
+  `id_question` int NOT NULL AUTO_INCREMENT,
+  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id_question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Index pour les tables déchargées
---
+-- --------------------------------------------------------
 
 --
--- Index pour la table `animal`
---
-ALTER TABLE `animal`
-  ADD PRIMARY KEY (`id_question`);
-
---
--- Index pour la table `culture generale`
---
-ALTER TABLE `culture generale`
-  ADD PRIMARY KEY (`id_question`);
-
---
--- Index pour la table `geographie`
---
-ALTER TABLE `geographie`
-  ADD PRIMARY KEY (`id_question`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
+-- Structure de la table `utilisateurs`
 --
 
---
--- AUTO_INCREMENT pour la table `animal`
---
-ALTER TABLE `animal`
-  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT;
+DROP TABLE IF EXISTS `utilisateurs`;
+CREATE TABLE IF NOT EXISTS `utilisateurs` (
+  `utilisateur_id` int NOT NULL AUTO_INCREMENT,
+  `mail` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `mdp` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`utilisateur_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- AUTO_INCREMENT pour la table `culture generale`
+-- Déchargement des données de la table `utilisateurs`
 --
-ALTER TABLE `culture generale`
-  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `geographie`
---
-ALTER TABLE `geographie`
-  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT;
+INSERT INTO `utilisateurs` (`utilisateur_id`, `mail`, `mdp`) VALUES
+(1, 'abdul@gmail.com', 'baba'),
+(2, 'abdul@gmail.com', 'baba');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
