@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+<?php require_once(__DIR__ . '/structure/header.php'); ?>
     <main>
     <img src="assets/quiznight.png" alt="lolo">
     <h1>Connexion</h1>
@@ -51,5 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </section>
     </main>
+    <?php require_once(__DIR__ . '/structure/footer.php'); ?>
 </body>
 </html>
