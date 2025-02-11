@@ -1,0 +1,104 @@
+.lobster-regular {
+    font-family: 'Lobster', serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --main-font: 'Roboto', sans-serif;
+    --title-font: 'Lobster', sans-serif;
+
+    --main-bg-color: #5f21ee;
+    --bg-body: #0035D5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #0035D5;
+      main {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       
+        section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img {
+                width: 30%;
+                height: auto;
+               
+            }
+        }
+        h1 {
+            font-family: var(--title-font);
+            font-size: 40px;
+            margin-bottom: 20px;
+            margin-top: 70px;
+            color: #ffffff;
+        }
+    }
+        .formsection {
+            margin-top: 50px;
+            width: 30%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+           background-color: rgb(180, 180, 180);
+            border-radius: 20px;
+            form {
+                font-family: var(--main-font);
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+                label {
+                    margin : 20px 0 5px 0;
+                    color: var(--main-bg-color);
+                    font-weight: bold;
+                    padding: 5px;
+                   
+                }
+                input {
+                    font-size: 16px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: none;
+                    background-color: var(--bg-body);
+                    transition: 0.3s ease-in-out;
+                }
+                input:focus {
+                    box-shadow: #EE7121 inset 0 -4px;
+                }
+                #buttonbox {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    button {
+                        border-radius: 25px;
+                        padding: 10px;
+                        margin: 20px 0;
+                        width: 40%;
+                        background-color: var(--main-bg-color);
+                        font-weight: bold;
+                        color: white;
+                        border: none;
+                    }
+                    button:hover {
+                        background-color: #ffffff;
+                        color: rgb(235, 235, 235);
+                        cursor: pointer;
+                    }
+                }
+            }
+    }
+}
+
+
+
