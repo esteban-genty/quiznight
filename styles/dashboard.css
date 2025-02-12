@@ -25,7 +25,7 @@
     font-weight: bold;
 }
 
-.dashboard div{
+.dashboard article{
     padding: 30px;
     width: 800px;
     height: 100px;
@@ -36,4 +36,31 @@
 .dashboard span{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+}
+
+.infos-droit{
+    float: right;
+    width: 30%;
+}
+
+
+.infos-droit ul{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.infos-droit li{
+    list-style: none;
+}
+
+.infos-droit a{
+    text-decoration: none;
+}
+
+a{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }

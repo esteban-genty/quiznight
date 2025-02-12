@@ -29,17 +29,17 @@
             <h3>Bienvenue dans votre dashboard, <?php echo "Estéban Genty"; ?></h3>
             <button class="deconnexion">Déconnexion</button>
 
-            <div class="infos">
-                <h3>Ajouter - Questions</h3>
-                <span>Ajouter</span>
-            </div>
-            <div class="infos-right">
-                <ul>
-                    <li><a href="plats/ajouter-categories-plats" class="btn-add">Ajouter</a></li>
-                    <li><a href="" class="btn-edit">Modifier</a></li>
-                    <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
-                </ul>
-            </div>
+            <article class="infos">
+                <h3>QuizNight - Questions</h3>
+                <div class="infos-droit">
+                    <ul>
+                        <li><a href="quiz/ajouter-question" class="btn-ajouter">Ajouter</a></li>
+                        <li><a href="" class="btn-edit">Modifier</a></li>
+                        <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
+                    </ul>
+                </div>
+            </article>
+
         </section>
 
 
