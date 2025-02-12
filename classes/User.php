@@ -23,7 +23,7 @@
             $this->mdp = password_hash($this->mdp, PASSWORD_BCRYPT);
 
             $query = "INSERT INTO " . $this->table_name . " (mail, mdp) VALUES (:mail, :mdp)";
-            $stmt = $this->conn->prepare($query);
+            $stmt = $this->mdp_confirmation->prepare($query);
 
             $stmt->bindParam(':mail', $this->mail);
             $stmt->bindParam(':mdp', $this->mdp);
