@@ -2,7 +2,7 @@
 
 // connexion.php
 require_once 'classes/Database.php';
-require_once 'classes/Auth.php';
+require_once 'classes/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = $_POST['mail'];
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $database = new Database();
     $db = $database->connect();
 
-    $auth = new Auth($db);
+    $auth = new User($db);
     $error = $auth->login($mail, $mdp);
 }
 ?>
@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link rel="stylesheet" href="styles/connexion.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/root.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <?php require_once(__DIR__ . '/structure/header.php'); ?>
     <main>
-        <section class="sectionimg">
-        <img src="assets/quiznight.png" alt="lolo">
-        </section>
+      
    
     <h1>Connexion</h1>
         <section class="formsection">
