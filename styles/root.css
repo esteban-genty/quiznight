@@ -24,4 +24,5 @@
 
 body {
     background-color: var(--bg-body);
+    height: 100vh;
 }

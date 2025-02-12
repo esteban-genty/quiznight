@@ -3,8 +3,8 @@
     <a class="aImg" href="accueil.php"><img src="assets/quiznight.png" alt="logo quiznight"></a>
     <nav>
         <ul>
-            <li><a href="#login.php">Connexion</a></li>
-            <li><a href="#inscription.php">Inscription</a></li>
+            <li><a href="connexion.php">Connexion</a></li>
+            <li><a href="inscription.php">Inscription</a></li>
         </ul>
     </nav>
 </header>

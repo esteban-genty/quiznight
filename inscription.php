@@ -1,39 +1,20 @@
 <?php
     session_start();
-    require_once(__DIR__ . '/config/connexion.php'); 
+    require_once(__DIR__ . '/classes/Database.php');
+    require_once(__DIR__ . '/classes/User.php');
+    
+    $database = new Database();
+    $db = $database->connect();
+
+    $user = new User($db);
     $erreur_msg = "";
-    class Utilisateur {
-        private $bddPDO;
-    
-        public function __construct($bddPDO) {
-            $this->bddPDO = $bddPDO;
-        }
-    
-        public function inscrire($mail, $mdp, $mdp_confirmation) {
-            if ($mdp !== $mdp_confirmation) {
-                return "Les mots de passe ne correspondent pas";
-            }
-            
-            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                return "Adresse e-mail invalide";
-            }
-            
-            $mdp_hashed = password_hash($mdp, PASSWORD_BCRYPT);
-            
-            $req = $this->bddPDO->prepare("INSERT INTO utilisateurs (mail, mdp) VALUES (:mail, :mdp)");
-            $req->execute([
-                'mail' => $mail,
-                'mdp' => $mdp_hashed
-            ]);
-            
-            if ($req->rowCount() > 0) {
-                $_SESSION['utilisateur'] = ['mail' => $mail];
-                header('Location: inscription.php');
-                exit();
-            }
-            
-            return "Erreur lors de l'inscription";
-        }
+
+    if (isset($_POST['submitbutton'])) {
+        $user->mail = $_POST['mail'];
+        $user->mdp = $_POST['mdp'];
+        $user->mdp_confirmation = $_POST['mdp_confirmation'];
+
+        $erreur_msg = $user->register();
     }
 ?>
 
@@ -54,9 +35,6 @@
 <body>
     <?php require_once(__DIR__ . '/structure/header.php'); ?>
     <main>
-        <!-- <section class="sectionImg">
-            <img src="assets/quiznight.png" alt="logo quiznight">
-        </section> -->
         <div class="Bigsection">
             <h1>Inscription</h1>
             <section class="formsection">
@@ -67,8 +45,8 @@
                     <input type="password" name="mdp" id="mdp" required>
                     <label for="">Confirmation du mot de passe</label>
                     <input type="password" name="mdp_confirmation" id="mdp_confirmation" required>
-                    <?php if ($erreur_msg): ?>
-                        <p style="color: red;"><?php echo $erreur_msg; ?></p>
+                    <?php if (!empty($erreur_msg)) : ?>
+                        <p style="color: red; text-align: center;"> <?= htmlspecialchars($erreur_msg) ?> </p>
                     <?php endif; ?>
                     <div id = "buttonbox">
                         <button type="submit" name="submitbutton">S'inscrire</button>
