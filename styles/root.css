@@ -1,0 +1,28 @@
+.lobster-regular {
+    font-family: 'Lobster', serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --main-font: 'Roboto', sans-serif;
+    --title-font: 'Lobster', sans-serif;
+    
+    --black-color: #2D0320;
+    --primary-color: #00AF3A;
+    --secondary-color: #DF6801;
+    --font-color: #002aa8;
+    --unfocus-color: #b5c6ff;
+    --main-bg-color: #EE7121;
+    --bg-body: #0035D5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-body);
+    height: 100vh;
+}
