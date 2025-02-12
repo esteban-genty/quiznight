@@ -1,32 +1,34 @@
 <?php
-<<<<<<< HEAD
-    $host = 'localhost';
-    $dbname = 'quiznight';
-    $username = 'root';  
-    $password = ''; 
-    
-    try {
+class Connexion{
+    private $host;
+    private $dbname;
+    private $username;
+    private $password;
 
-        $bddPDO = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct($host, $dbname, $username, $password){
 
-    } catch (PDOException $e) {
+        $this->host = $host;
+        $this->dbname = $dbname;
+        $this->username = $username;
+        $this->password = $password;
 
-        echo "Erreur de connexion à la base de données: " . $e->getMessage();
-        exit();
     }
-=======
-    // Information pour se connecter
-    $host = 'localhost';
-    $username = 'root';
-    $password = '';
-    $dbname = 'quiznight';
+    
+    public function connexionBDD(){
+        try {
 
-    // Connexion base de donnés avec PDO
-    $bddPDO = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    // echo "<p><strong>Connexion réussie</strong></p>";
+            $bddPDO = new PDO("mysql:host=$this->host ; dbname=$this->dbname;charset=utf8", $this->username, $this->password);
+            $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connexion réussie";
 
-    // Affiche les erreurs
-    $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
->>>>>>> 81df5bdbea77dc28f4d1b0c0f0b24c794b65719c
+        } catch (PDOException $e) {
+
+            echo "Erreur de connexion à la base de données: " . $e->getMessage();
+            exit();
+            }
+        }
+}
+
+$connexion = new Connexion('localhost', 'quiznight', 'root', '');
+
 ?>

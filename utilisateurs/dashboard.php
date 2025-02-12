@@ -1,3 +1,5 @@
+<?php require_once(__DIR__ . '/../config/connexion.php') ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,7 +12,7 @@
     <title>QuizNight - Choix de catégories</title>
 
     <!-- Fichier styles -->
-    <link rel="stylesheet" href="../styles/quiz.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/styles.css">
 
     <!-- Police d'écriture -->
@@ -27,7 +29,10 @@
             <h3>Bienvenue dans votre dashboard, <?php echo "Estéban Genty"; ?></h3>
             <button class="deconnexion">Déconnexion</button>
 
-
+            <div class="infos">
+                <h3>Ajouter - Questions</h3>
+                <span>Ajouter</span>
+            </div>
         </section>
 
 

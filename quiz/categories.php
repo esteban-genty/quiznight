@@ -1,7 +1,6 @@
 <?php require_once(__DIR__ . '/../config/connexion.php') ?>
 
 
-
 <?php
 class Categories{
 
