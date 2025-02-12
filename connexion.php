@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <?php require_once(__DIR__ . '/structure/header.php'); ?>
     <main>
-    <img src="assets/quiznight.png" alt="lolo">
+        <section class="sectionimg">
+        <img src="assets/quiznight.png" alt="lolo">
+        </section>
+   
     <h1>Connexion</h1>
         <section class="formsection">
     
@@ -50,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
             </form>
         </section>
+     
     </main>
     <?php require_once(__DIR__ . '/structure/footer.php'); ?>
 </body>

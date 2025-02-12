@@ -110,7 +110,8 @@ input:focus {
 }
 
 img {
-    height: 140px;
+    width: 30%;
+    height: auto;
 }
 
 /* Responsive */
