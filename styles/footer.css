@@ -1,0 +1,47 @@
+footer {
+    background-color: var(--unfocus-color);
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--main-font);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--black-color);
+    div {
+        height: 80%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        img {
+            height: 100%;
+            width: auto;
+        }
+        nav {
+            margin-top: 28px;
+            ul {
+                list-style: none;
+                a {
+                    color: var(--black-color);
+                    text-decoration: none;
+                }
+            }
+        }
+        .divVide {
+            height: 100%;
+            width: 50%;
+        }
+    }
+    label {
+        font-weight: lighter;
+        a {
+            color: var(--black-color);
+        }
+        a:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+}

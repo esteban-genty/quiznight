@@ -43,7 +43,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/root.css">
+    <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/inscription.css">
+    <link rel="stylesheet" href="styles/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -52,9 +54,9 @@
 <body>
     <?php require_once(__DIR__ . '/structure/header.php'); ?>
     <main>
-        <section class="sectionImg">
+        <!-- <section class="sectionImg">
             <img src="assets/quiznight.png" alt="logo quiznight">
-        </section>
+        </section> -->
         <div class="Bigsection">
             <h1>Inscription</h1>
             <section class="formsection">
