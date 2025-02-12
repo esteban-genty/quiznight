@@ -1,17 +1,34 @@
 <?php
-    $host = 'localhost';
-    $dbname = 'quiznight';
-    $username = 'root';  
-    $password = ''; 
-    
-    try {
+class Connexion{
+    private $host;
+    private $dbname;
+    private $username;
+    private $password;
 
-        $bddPDO = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    } catch (PDOException $e) {
-
-        echo "Erreur de connexion à la base de données: " . $e->getMessage();
-        exit();
+    public function __construct($host, $dbname, $username, $password){
+        $this->host = $host;
+        $this->dbname = $dbname;
+        $this->username = $username;
+        $this->password = $password;
     }
+    
+    public function connexionBDD(){
+        try {
+            // Retirer l'espace entre host=$this->host et dbname
+            $bddPDO = new PDO("mysql:host=$this->host;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
+            $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //echo "Connexion réussie";
+            return $bddPDO;  // N'oublie pas de retourner l'objet PDO pour pouvoir l'utiliser dans le reste du code
+        } catch (PDOException $e) {
+            echo "Erreur de connexion à la base de données: " . $e->getMessage();
+            exit();
+        }
+    }
+}
+
+// Création de la connexion
+$connexion = new Connexion('localhost', 'quiznight', 'root', '');
+
+// Appel de la méthode pour se connecter
+$connexion->connexionBDD();
 ?>

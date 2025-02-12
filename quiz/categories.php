@@ -1,25 +1,26 @@
 <?php require_once(__DIR__ . '/../config/connexion.php') ?>
 
-
-
 <?php
-class Categories{
+class Categories extends Connexion {
 
     private $bddPDO;
 
+    // Constructeur
     public function __construct($bddPDO) {
+        parent::__construct('localhost', 'quiznight', 'root', ''); // Tu peux adapter ce passage selon ta structure
         $this->bddPDO = $bddPDO;
-    }
+    } 
 
-    public function requeteCategories(){        
+    // Requête pour récupérer les catégories
+    public function requeteCategories() {        
         $requete = "SHOW TABLES IN quiznight";
         $requete_categories = $this->bddPDO->prepare($requete);
         $requete_categories->execute();
         return $requete_categories;
     }
 
-    public function afficherCategories(){
-
+    // Afficher les catégories sous forme de liens
+    public function afficherCategories() {
         $requete_categories = $this->requeteCategories();
 
         while ($choisir_categories = $requete_categories->fetch(PDO::FETCH_ASSOC)) {
@@ -60,16 +61,20 @@ class Categories{
         <img src="../assets/quiznight.png" />
         <h1>Catégories</h1>
 
-
         <?php
+            // Création de l'objet Connexion pour récupérer l'objet PDO
+            $connexion = new Connexion('localhost', 'quiznight', 'root', '');
+            $bddPDO = $connexion->connexionBDD();
+
+            // Création de l'objet Categories avec l'objet PDO
             $categories = new Categories($bddPDO);
 
             // Afficher les catégories
             $categories->afficherCategories();
-
         ?>
     </section>
 
 </main>
 
 </body>
+</html>

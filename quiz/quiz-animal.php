@@ -2,11 +2,12 @@
 
 <?php
 
-class Quiz_animal {
+class Quiz_animal extends Connexion{
 
     private $bddPDO;
 
     public function __construct($bddPDO) {
+        parent::__construct('localhost', 'quiznight', 'root', ''); // Tu peux l'adapter selon ta structure
         $this->bddPDO = $bddPDO;
     }
 
@@ -43,7 +44,7 @@ class Quiz_animal {
             echo '<input type="submit" name="reponse" value="faux" class="faux">';
             echo '</form>';
 
-            
+
             if (isset($_POST['reponse']) && $_POST['id_question'] == $choisir_reponses['id_question']) {
                 $reponse_utilisateur = $_POST['reponse'];
                 $id_question = $_POST['id_question'];
@@ -83,8 +84,12 @@ class Quiz_animal {
 
         <?php
         
+        $bddPDO = $connexion->connexionBDD();
+
+        // Création de l'objet Quiz_animal avec l'objet PDO
         $quiz_animal = new Quiz_animal($bddPDO);
 
+        // Affichage des questions et réponses
         $quiz_animal->afficherQuestion();
         
         ?>
