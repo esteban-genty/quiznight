@@ -33,6 +33,13 @@
                 <h3>Ajouter - Questions</h3>
                 <span>Ajouter</span>
             </div>
+            <div class="infos-right">
+                <ul>
+                    <li><a href="plats/ajouter-categories-plats" class="btn-add">Ajouter</a></li>
+                    <li><a href="" class="btn-edit">Modifier</a></li>
+                    <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
+                </ul>
+            </div>
         </section>
 
 
