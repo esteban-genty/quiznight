@@ -1,8 +1,8 @@
 <?php
 
 // connexion.php
-require_once 'Database.php';
-require_once 'Auth.php';
+require_once 'classes/Database.php';
+require_once 'classes/Auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = $_POST['mail'];
