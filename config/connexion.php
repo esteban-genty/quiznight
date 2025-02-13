@@ -14,11 +14,10 @@ class Connexion{
     
     public function connexionBDD(){
         try {
-            // Retirer l'espace entre host=$this->host et dbname
             $bddPDO = new PDO("mysql:host=$this->host;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
             $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Connexion réussie";
-            return $bddPDO;  // N'oublie pas de retourner l'objet PDO pour pouvoir l'utiliser dans le reste du code
+            return $bddPDO;
         } catch (PDOException $e) {
             echo "Erreur de connexion à la base de données: " . $e->getMessage();
             exit();
@@ -26,9 +25,9 @@ class Connexion{
     }
 }
 
-// Création de la connexion
+
 $connexion = new Connexion('localhost', 'quiznight', 'root', '');
 
-// Appel de la méthode pour se connecter
+
 $connexion->connexionBDD();
 ?>

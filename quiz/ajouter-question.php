@@ -8,7 +8,7 @@ class Ajouter extends Connexion{
 
     // Constructeur
     public function __construct($bddPDO) {
-        parent::__construct('localhost', 'quiznight', 'root', ''); // Tu peux adapter ce passage selon ta structure
+        parent::__construct('localhost', 'quiznight', 'root', '');
         $this->bddPDO = $bddPDO;
     }
 
@@ -27,17 +27,13 @@ class Ajouter extends Connexion{
         echo '<h1>Ajouter une questions</h1>';
         echo '<form action="" method="POST">';
 
-        echo '<select name="categories_quiz" id="categories_quiz">';
-        echo '<option value="choisir-categories">Choisir Categorie</option>';
-        while ($choisir_categories = $requete_categories->fetch(PDO::FETCH_ASSOC)) {
-            foreach ($choisir_categories as $table) {
-                echo "<option value='" .$table . "'>" . $table . "</option>";
-            }
-        }
-        echo "</select>";
-
         echo '<input placeholder="Question" type="text" name="question" required>';
-        echo '<input placeholder="Vrai ou Faux" type="text" name="reponse" required>';
+
+        echo '<input placeholder="Réponse 1" type="text" name="reponse1" required>';
+        echo '<input placeholder="Réponse 2" type="text" name="reponse2" required>';
+        echo '<input placeholder="Réponse 3" type="text" name="reponse3" required>';
+        echo '<input placeholder="Réponse 4" type="text" name="reponse4" required>';
+
         echo '<button type="submit" name="enregistrer">Ajouter</button>';
     }
 
@@ -45,18 +41,11 @@ class Ajouter extends Connexion{
 
         if (isset($_POST['enregistrer'])) {
 
-            $categorie = htmlspecialchars($_POST['categories_quiz']);
-
-            if($categorie == "choisir-categories"){
-                echo "<p>Veuillez choisir une catégorie.</p>";
-                exit();
-            }else{
-                $categorie = htmlspecialchars($_POST['categories_quiz']);
-            }
-
             $question = htmlspecialchars($_POST['question']);
-            $reponse = htmlspecialchars($_POST['reponse']);
-            $table = htmlspecialchars($_POST['categories_quiz']);
+            $reponse1 = htmlspecialchars($_POST['reponse1']);
+            $reponse2 = htmlspecialchars($_POST['reponse2']);
+            $reponse3 = htmlspecialchars($_POST['reponse3']);
+            $reponse4 = htmlspecialchars($_POST['reponse4']);
 
             if($reponse == strtolower('vrai') || $reponse == strtolower('faux')){
 
@@ -64,7 +53,6 @@ class Ajouter extends Connexion{
 
                     $requete = $this->bddPDO->prepare("INSERT INTO `$table` (questions, reponses) VALUES (:question, :reponse)");
 
-                    // Change les valuer des paramètres de la requête SQL
                     $requete->bindValue(':question', $question);
                     $requete->bindValue(':reponse', $reponse);
                     //$requete->bindValue(':utilisateur', $_SESSION['utilisateur']['utilisateur_id']);
