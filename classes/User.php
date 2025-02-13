@@ -1,8 +1,9 @@
 <?php
     class User {
         private $db;
-        private $table_name = "utilisateurs";
+        private $table_name = "utilisateur";
 
+        public $nom;
         public $mail;
         public $mdp;
         public $mdp_confirmation;
@@ -22,9 +23,10 @@
 
             $this->mdp = password_hash($this->mdp, PASSWORD_BCRYPT);
 
-            $query = "INSERT INTO " . $this->table_name . " (mail, mdp) VALUES (:mail, :mdp)";
-            $stmt = $this->conn->prepare($query);
+            $query = "INSERT INTO " . $this->table_name . " (nom, mail, mdp) VALUES (:nom, :mail, :mdp)";
+            $stmt = $this->db->prepare($query);
 
+            $stmt->bindParam(':nom', $this->nom);
             $stmt->bindParam(':mail', $this->mail);
             $stmt->bindParam(':mdp', $this->mdp);
 

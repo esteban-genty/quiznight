@@ -10,6 +10,7 @@
     $erreur_msg = "";
 
     if (isset($_POST['submitbutton'])) {
+        $user->nom = $_POST['nom'];
         $user->mail = $_POST['mail'];
         $user->mdp = $_POST['mdp'];
         $user->mdp_confirmation = $_POST['mdp_confirmation'];
@@ -39,6 +40,8 @@
             <h1>Inscription</h1>
             <section class="formsection">
                 <form action="" method="post">
+                    <label for="">Pseudo</label>
+                    <input type="text" name="nom" id="nom" required>
                     <label for="">Email</label>
                     <input placeholder="quiz@night.fr" type="email" name="mail" id="mail" required>
                     <label for="">Mot de passe</label>
