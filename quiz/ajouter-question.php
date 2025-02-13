@@ -1,8 +1,8 @@
-<?php require_once(__DIR__ . '/../config/connexion.php') ?>
+<?php require_once(__DIR__ . '/../config/connexion.php'); ?>
 
 <?php
 
-class Ajouter extends Connexion{
+class AjouterQuestion extends Connexion {
 
     private $bddPDO;
 
@@ -12,75 +12,62 @@ class Ajouter extends Connexion{
         $this->bddPDO = $bddPDO;
     }
 
-    public function requeteAjouter(){
-
-        $requete = "SHOW TABLES IN quiznight";
-        $requete_categories = $this->bddPDO->prepare($requete);
-        $requete_categories->execute();
-        return $requete_categories;
+    public function requeteAfficherQuizz(){
+        $requete = "SELECT * FROM quizz";
+        $requete_quizz = $this->bddPDO->prepare($requete);
+        $requete_quizz->execute();
+        return $requete_quizz;
     }
 
     public function afficherAjoutQuestions(){
+        $requete_quizz = $this->requeteAfficherQuizz();
 
-        $requete_categories = $this->requeteAjouter();
-
-        echo '<h1>Ajouter une questions</h1>';
+        echo '<h1>Ajouter une question</h1>';
         echo '<form action="" method="POST">';
 
+        echo '<select name="question_quiz" id="question_quiz" required>';
+        echo '<option value="">Choisir un quiz</option>';
+        while ($choisir_quizz = $requete_quizz->fetch(PDO::FETCH_ASSOC)) {
+            echo "<option value='" . $choisir_quizz['id_quizz'] . "'>" . $choisir_quizz['titre'] . "</option>";
+        }
+        echo "</select>";
+
         echo '<input placeholder="Question" type="text" name="question" required>';
-
-        echo '<input placeholder="Réponse 1" type="text" name="reponse1" required>';
-        echo '<input placeholder="Réponse 2" type="text" name="reponse2" required>';
-        echo '<input placeholder="Réponse 3" type="text" name="reponse3" required>';
-        echo '<input placeholder="Réponse 4" type="text" name="reponse4" required>';
-
         echo '<button type="submit" name="enregistrer">Ajouter</button>';
+        echo '</form>';
     }
 
     public function ajouterQuestion(){
-
         if (isset($_POST['enregistrer'])) {
 
+            // Vérification de la question et du quiz
             $question = htmlspecialchars($_POST['question']);
-            $reponse1 = htmlspecialchars($_POST['reponse1']);
-            $reponse2 = htmlspecialchars($_POST['reponse2']);
-            $reponse3 = htmlspecialchars($_POST['reponse3']);
-            $reponse4 = htmlspecialchars($_POST['reponse4']);
+            $id_quizz = $_POST['question_quiz']; // Récupération de l'ID du quiz sélectionné
 
-            if($reponse == strtolower('vrai') || $reponse == strtolower('faux')){
+            if (!empty($question) && !empty($id_quizz)) {
 
-                if(!empty($question) && !empty($reponse)){
+                // Insertion de la question dans la base de données
+                $requete = $this->bddPDO->prepare("INSERT INTO `question` (question, id_quizz) VALUES (:question, :id_quizz)");
 
-                    $requete = $this->bddPDO->prepare("INSERT INTO `$table` (questions, reponses) VALUES (:question, :reponse)");
+                $requete->bindValue(':question', $question);
+                $requete->bindValue(':id_quizz', $id_quizz, PDO::PARAM_INT);
 
-                    $requete->bindValue(':question', $question);
-                    $requete->bindValue(':reponse', $reponse);
-                    //$requete->bindValue(':utilisateur', $_SESSION['utilisateur']['utilisateur_id']);
+                $result = $requete->execute();
 
-                    $result = $requete->execute();
-
-                    if($result){
-
-                        echo 'question / réponse ajouter';
-                    }else{
-                        echo 'erreur';
-                    }
-
+                if ($result) {
+                    echo 'Question ajoutée avec succès';
+                } else {
+                    echo 'Erreur lors de l\'ajout de la question';
                 }
-            }else{
-                echo "vrai ou faux";
+
+            } else {
+                echo "La question et le quiz doivent être sélectionnés.";
             }
-
-        }else{
-            echo 'rien';
         }
-        
     }
-
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -90,7 +77,7 @@ class Ajouter extends Connexion{
     <meta name="keywords" content="QuizNight, Quiz en ligne">
     <meta name="author" content="Estéban, Antoine, Sébastien">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizNight - Choix de catégories</title>
+    <title>QuizNight - Ajouter une question</title>
 
     <!-- Fichier styles -->
     <link rel="stylesheet" href="../styles/ajouter-question.css">
@@ -104,28 +91,17 @@ class Ajouter extends Connexion{
 
 <body>
     <main>
-
         <section class="ajouter-question">
-
             <?php
-
+                // Connexion à la base de données
                 $bddPDO = $connexion->connexionBDD();
 
-                
-                $ajouter = new Ajouter($bddPDO);
+                // Création de l'objet AjouterQuestion et appel des méthodes
+                $ajouter = new AjouterQuestion($bddPDO);
                 $ajouter->afficherAjoutQuestions();
                 $ajouter->ajouterQuestion();
-
             ?>
-
         </section>
-
-
-
     </main>
-
-
-
-
-
 </body>
+</html>

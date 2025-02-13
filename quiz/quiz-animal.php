@@ -1,58 +1,88 @@
-<?php require_once(__DIR__ . '/../config/connexion.php') ?>
+<?php require_once(__DIR__ . '/../config/connexion.php'); ?>
 
 <?php
 
-class Quiz_animal extends Connexion{
+class Quiz_animal extends Connexion {
 
     private $bddPDO;
 
     public function __construct($bddPDO) {
-        parent::__construct('localhost', 'quiznight', 'root', ''); // Tu peux l'adapter selon ta structure
+        parent::__construct('localhost', 'quiznight', 'root', '');
         $this->bddPDO = $bddPDO;
     }
 
-    public function requeteAnimal() {
-        $requete = "SELECT * FROM animal";
-        $requete_animal = $this->bddPDO->prepare($requete);
-        $requete_animal->execute();
-        return $requete_animal;
+
+
+    public function requeteQuestions() {
+        $requete = "SELECT id_question, question FROM question WHERE id_quizz = 3";
+        $requete_questions = $this->bddPDO->prepare($requete);
+        $requete_questions->execute();
+        return $requete_questions;
     }
 
-    public function afficherReponse($id_question, $reponse_utilisateur) {
 
-        $requete_reponse = $this->bddPDO->prepare("SELECT reponses FROM animal WHERE id_question = :id_question");
+
+    public function requeteReponses($id_question) {
+        $requete = "SELECT id_reponse, reponse FROM reponse WHERE id_question = :id_question";
+        $requete_reponse = $this->bddPDO->prepare($requete);
         $requete_reponse->bindValue(':id_question', $id_question, PDO::PARAM_INT);
         $requete_reponse->execute();
-        $reponse_correcte = $requete_reponse->fetch(PDO::FETCH_ASSOC)['reponses'];
-
-        if (strtolower($reponse_utilisateur) == strtolower($reponse_correcte)) {
-            return "<p class='bonne-reponse'>Bonne réponse</p>";
-        } else {
-            return "<p class='mauvaise-reponse'>Mauvaise Réponse</p>";
-        }
+        return $requete_reponse;
     }
 
-    public function afficherQuestion() {
-        $requete_animal = $this->requeteAnimal();
 
-        while ($choisir_reponses = $requete_animal->fetch(PDO::FETCH_ASSOC)) {
+    public function afficherQuizz(){
+        
+        $requete_questions = $this->requeteQuestions();
+
+
+        while ($question = $requete_questions->fetch(PDO::FETCH_ASSOC)) {
+            echo "<h2>" . $question['question'] . "</h2>";
+    
+
+            $reponses = $this->requeteReponses($question['id_question']);
             echo '<form action="" method="POST">';
-            echo "<h2>" . $choisir_reponses["questions"] . "</h2>";
 
-            echo "<input type='hidden' name='id_question' value='" . $choisir_reponses['id_question'] . "'>";
-            echo '<input type="submit" name="reponse" value="vrai" class="vrai">';
-            echo '<input type="submit" name="reponse" value="faux" class="faux">';
+
+            while ($reponse = $reponses->fetch(PDO::FETCH_ASSOC)) {
+                echo '<label>';
+                echo '<input type="radio" name="reponse_' . $question['id_question'] . '" value="' . $reponse['id_reponse'] . '"> ' . $reponse['reponse'];
+                echo '</label><br>';
+            }
+    
+            echo '<button type="submit" name="soumettre_' . $question['id_question'] . '">Soumettre</button>';
             echo '</form>';
+            
+            
+            if (isset($_POST['soumettre_' . $question['id_question']])) {
 
+                if (isset($_POST['reponse_' . $question['id_question']])) {
 
-            if (isset($_POST['reponse']) && $_POST['id_question'] == $choisir_reponses['id_question']) {
-                $reponse_utilisateur = $_POST['reponse'];
-                $id_question = $_POST['id_question'];
-                echo $this->afficherReponse($id_question, $reponse_utilisateur);
+                    $reponse_utilisateur = $_POST['reponse_' . $question['id_question']];
+                    echo $this->verifierReponse($question['id_question'], $reponse_utilisateur);
+                } else {
+                    echo "<p>Veuillez sélectionner une réponse.</p>";
+                }
             }
         }
     }
+
+
+    public function verifierReponse($id_question, $reponse_utilisateur) {
+        $requete_reponse = $this->bddPDO->prepare("SELECT id_reponse, reponse, correct FROM reponse WHERE id_question = :id_question");
+        $requete_reponse->bindValue(':id_question', $id_question, PDO::PARAM_INT);
+        $requete_reponse->execute();
+
+        while ($reponse = $requete_reponse->fetch(PDO::FETCH_ASSOC)) {
+            if ($reponse_utilisateur == $reponse['id_reponse'] && $reponse['correct'] == 1) {
+                return "<p class='bonne-reponse'>Bonne réponse !</p>";
+            }
+        }
+
+        return "<p class='mauvaise-reponse'>Mauvaise réponse. Essayez encore !</p>";
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +93,7 @@ class Quiz_animal extends Connexion{
     <meta name="keywords" content="QuizNight, Quiz en ligne">
     <meta name="author" content="Estéban, Antoine, Sébastien">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizNight - Choix de catégories</title>
+    <title>QuizNight - Quiz Animal</title>
 
     <!-- Fichier styles -->
     <link rel="stylesheet" href="../styles/quiz.css">
@@ -79,19 +109,14 @@ class Quiz_animal extends Connexion{
 
     <section class="quiz-animal">
 
-        <img src="../assets/quiznight.png" />
-        <h1>Questions</h1>
+        <img src="../assets/quiznight.png" alt="QuizNight Logo" />
+        <h1>Quiz Animal</h1>
 
         <?php
-        
         $bddPDO = $connexion->connexionBDD();
 
-        // Création de l'objet Quiz_animal avec l'objet PDO
         $quiz_animal = new Quiz_animal($bddPDO);
-
-        // Affichage des questions et réponses
-        $quiz_animal->afficherQuestion();
-        
+        $quiz_animal->afficherQuizz();
         ?>
 
     </section>

@@ -5,26 +5,25 @@ class Categories extends Connexion {
 
     private $bddPDO;
 
-    // Constructeur
     public function __construct($bddPDO) {
-        parent::__construct('localhost', 'quiznight', 'root', ''); // Tu peux adapter ce passage selon ta structure
+        parent::__construct('localhost', 'quiznight', 'root', '');
         $this->bddPDO = $bddPDO;
     } 
 
-    // Requête pour récupérer les catégories
-    public function requeteCategories() {        
-        $requete = "SHOW TABLES IN quiznight";
-        $requete_categories = $this->bddPDO->prepare($requete);
-        $requete_categories->execute();
-        return $requete_categories;
+    // Requête pour récupérer les titres des quizz
+    public function requeteQuizz() {        
+        $requete = "SELECT titre  FROM quizz";
+        $requete_quizz = $this->bddPDO->prepare($requete);
+        $requete_quizz->execute();
+        return $requete_quizz;
     }
 
-    // Afficher les catégories sous forme de liens
+    // Afficher les quizz sous forme de liens
     public function afficherCategories() {
-        $requete_categories = $this->requeteCategories();
+        $requete_quizz = $this->requeteQuizz();
 
-        while ($choisir_categories = $requete_categories->fetch(PDO::FETCH_ASSOC)) {
-            foreach ($choisir_categories as $table) {
+        while ($choisir_quizz = $requete_quizz->fetch(PDO::FETCH_ASSOC)) {
+            foreach ($choisir_quizz as $table) {
                 echo '<a href="quiz-' . $table . '.php"> <div>' . $table . '</div></a>';
             }
         }
