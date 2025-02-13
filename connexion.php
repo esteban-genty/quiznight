@@ -4,15 +4,29 @@
 require_once 'classes/Database.php';
 require_once 'classes/User.php';
 
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: dashboard.php');
+    exit;
+}
+
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mail = $_POST['mail'];
-    $mdp = $_POST['mdp'];
+    $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
+    $mdp = htmlspecialchars($_POST['mdp']);
 
     $database = new Database();
     $db = $database->connect();
 
     $auth = new User($db);
-    $error = $auth->login($mail, $mdp);
+    if ($auth->login($mail, $mdp)) {
+        header('Location: dashboard.php');
+        exit;
+    } else {
+        $error = "Email ou mot de passe incorrect.";
+    }
 }
 ?>
 

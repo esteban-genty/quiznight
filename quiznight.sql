@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 11 fév. 2025 à 16:58
+-- Généré le : jeu. 13 fév. 2025 à 10:46
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -24,66 +24,61 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `animal`
+-- Structure de la table `question`
 --
 
-DROP TABLE IF EXISTS `animal`;
-CREATE TABLE IF NOT EXISTS `animal` (
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE IF NOT EXISTS `question` (
   `id_question` int NOT NULL AUTO_INCREMENT,
-  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `id_quizz` varchar(255) NOT NULL,
   PRIMARY KEY (`id_question`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `culture generale`
+-- Structure de la table `quizz`
 --
 
-DROP TABLE IF EXISTS `culture generale`;
-CREATE TABLE IF NOT EXISTS `culture generale` (
-  `id_question` int NOT NULL AUTO_INCREMENT,
-  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id_question`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `quizz`;
+CREATE TABLE IF NOT EXISTS `quizz` (
+  `id_quizz` int NOT NULL AUTO_INCREMENT,
+  `titre` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `id_utilisateur` int NOT NULL,
+  PRIMARY KEY (`id_quizz`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `geographie`
+-- Structure de la table `reponse`
 --
 
-DROP TABLE IF EXISTS `geographie`;
-CREATE TABLE IF NOT EXISTS `geographie` (
-  `id_question` int NOT NULL AUTO_INCREMENT,
-  `questions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `reponses` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id_question`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `reponse`;
+CREATE TABLE IF NOT EXISTS `reponse` (
+  `id_reponse` int NOT NULL AUTO_INCREMENT,
+  `reponse` varchar(255) NOT NULL,
+  `correct` tinyint(1) NOT NULL,
+  `id_question` int NOT NULL,
+  PRIMARY KEY (`id_reponse`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateurs`
+-- Structure de la table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateurs`;
-CREATE TABLE IF NOT EXISTS `utilisateurs` (
-  `utilisateur_id` int NOT NULL AUTO_INCREMENT,
-  `mail` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `mdp` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`utilisateur_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `utilisateurs`
---
-
-INSERT INTO `utilisateurs` (`utilisateur_id`, `mail`, `mdp`) VALUES
-(1, 'abdul@gmail.com', 'baba'),
-(2, 'abdul@gmail.com', 'baba');
+DROP TABLE IF EXISTS `utilisateur`;
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id_utilisateur` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `motdepasse` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_utilisateur`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
