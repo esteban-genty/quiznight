@@ -17,12 +17,12 @@
 
         if ($user && password_verify($mdp, $user['motdepasse']))
         {
-            session_start([
-                'cookie_lifetime' => 86400,
-                'cookie_httponly' => true,
-                'cookie_secure' => isset($_SERVER['HTTPS']),
-                'use_strict_mode' => true
-            ]);
+            //session_start([
+               // 'cookie_lifetime' => 86400,
+                //'cookie_httponly' => true,
+                //'cookie_secure' => isset($_SERVER['HTTPS']),
+                //'use_strict_mode' => true
+           // ]);
             $_SESSION['user_id'] = $user['utilisateur_id'];
             $_SESSION['user_mail'] = $user['mail'];
             return true;
