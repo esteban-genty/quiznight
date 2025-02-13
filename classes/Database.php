@@ -17,5 +17,5 @@ class Database {
         return $this->conn;
     }
 }
-
+ //$connexion = new Connexion('localhost', 'quiznight', 'root', '');
 ?>
