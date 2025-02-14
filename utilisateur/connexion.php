@@ -16,6 +16,8 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['motdepasse'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $motdepasse = htmlspecialchars($_POST['motdepasse']);
+    $password = "tonmotdepasse";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
 
 
