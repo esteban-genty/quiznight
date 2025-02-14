@@ -1,8 +1,4 @@
 <?php require_once(__DIR__ . '/../config/connexion.php') ?>
-<<<<<<< HEAD
-<?php require_once(__DIR__ . '/../classes/categories.php')?>
-
-=======
 
 <?php
 class Categories extends Connexion {
@@ -34,7 +30,6 @@ class Categories extends Connexion {
     }
 }
 ?>
->>>>>>> fonctionnalité/quiz
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -47,8 +42,10 @@ class Categories extends Connexion {
     <title>QuizNight - Choix de catégories</title>
 
     <!-- Fichier styles -->
+    <link rel="stylesheet" href="/quiznight/styles/root.css">
+    <link rel="stylesheet" href="/quiznight/styles/header.css">
     <link rel="stylesheet" href="../styles/categories.css">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="/quiznight/styles/footer.css">
 
     <!-- Police d'écriture -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,13 +54,13 @@ class Categories extends Connexion {
 </head>
 
 <body>
-
+<?php require_once(__DIR__ . '/../structure/header.php'); ?>
 <main>
 
     <section class="quiz-categories">
 
         <img src="../assets/quiznight.png" />
-        <h1>Catégories</h1>
+        <h1>Quiz</h1>
 
         <?php
             // Création de l'objet Connexion pour récupérer l'objet PDO
@@ -79,10 +76,6 @@ class Categories extends Connexion {
     </section>
 
 </main>
-
+<?php require_once(__DIR__ . '/../structure/footer.php'); ?>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> fonctionnalité/quiz

@@ -48,7 +48,7 @@
         
             if ($user && password_verify($mdp, $user['mdp'])) { // verifie  hash BCRYPT
                 session_start();
-                $_SESSION['user_id'] = $user['utilisateur_id'];
+                $_SESSION['user_id'] = $user['id_utilisateur'];
                 $_SESSION['user_mail'] = $user['mail'];
                 header('Location: dashboard.php');
                 exit;

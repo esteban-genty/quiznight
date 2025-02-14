@@ -68,15 +68,15 @@ body {
                         align-items: center;
                         height: 100%;
                         button {
-                            border-radius: 15px;
-                            padding: 10px;
-                            margin: 20px 0;
-                            width: 40%;
-                            background-color: var(--font-color);
-                            font-weight: bold;
+                            font-size: 16px;
                             letter-spacing: 1px;
-                            color: white;
+                            padding: 10px;
+                            border-radius: 5px;
+                            outline: none;
                             border: none;
+                            background-color: white;
+                            transition: 0.3s ease-in-out;
+                            margin: 20px 0;
                         }
                         button:hover {
                             background-color: var(--bg-body);

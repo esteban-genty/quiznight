@@ -51,10 +51,10 @@
 
     <section class="Bigsection">
         <h1>Liste de quiz</h1>
-        <section>
+        <section class="formsection">
             <form action="" method="POST">
                 <select name="cat" id="">
-                    <option value="">Choisissez une catégorie à supprimer</option>
+                    <option value="">Choisissez une catégorie</option>
                     <?php 
                         $connexion = new Connexion('localhost', 'quiznight', 'root', '');
                         $bddPDO = $connexion->connexionBDD();
@@ -68,7 +68,7 @@
                     ?>
                 </select>
 
-                <input type="submit" name="suppB" id="suppB">
+                <input type="submit" name="suppB" id="suppB" value="Supprimer">
             </form>
 
             <?php
@@ -76,7 +76,6 @@
             if (isset($_POST['cat']) && !empty($_POST['cat'])) {
                 $id_quiz = $_POST['cat'];
                 $sel->delete($id_quiz);
-                echo "ID du quiz sélectionné : " . htmlspecialchars($id_quiz);
             }
             ?>
         </section>

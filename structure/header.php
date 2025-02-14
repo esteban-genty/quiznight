@@ -5,11 +5,11 @@
         <ul>
             <?php 
                 if (isset($_SESSION['utilisateur']) == 0) {
-                    echo "<li><a href='connexion.php'>Connexion</a></li>";
-                    echo "<li><a href='inscription.php'>Inscription</a></li>";
+                    echo "<li><a href='../utilisateur/connexion.php'>Connexion</a></li>";
+                    echo "<li><a href='../utilisateur/inscription.php'>Inscription</a></li>";
                 }
                 else {
-                    echo "<li><a href='logout.php'><i class='fa-solid fa-right-from-bracket'></i>Se déconnecter</a></li>";
+                    echo "<li><a href='../config/logout.php'><i class='fa-solid fa-right-from-bracket'></i>Se déconnecter</a></li>";
                 }
             ?>
         </ul>
