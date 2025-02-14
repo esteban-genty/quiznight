@@ -54,7 +54,7 @@ class AjouterQuestion extends Connexion {
                 $result = $requete->execute();
 
                 if ($result) {
-                    echo 'Question ajoutée avec succès';
+                    echo '<p>Question ajoutée avec succès</p>';
                 } else {
                     echo 'Erreur lors de l\'ajout de la question';
                 }

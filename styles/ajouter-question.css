@@ -45,11 +45,21 @@ form {
     gap: 15px;
 }
 
+.ajouter-question select{
+    width: 250px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+}
 
-label {
-    font-weight: bold;
-    color: #333;
-    text-align: left;
+.ajouter-question p{
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 20px;
+    width: 300px;
+    background-color: #0035D5;
+    color: white;
 }
 
 
