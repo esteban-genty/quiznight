@@ -1,14 +1,42 @@
 <?php
-    // Information pour se connecter
-    $host = 'localhost';
-    $username = 'root';
-    $password = '';
-    $dbname = 'quiznight';
+    class Connexion{
+        private $host;
+        private $dbname;
+        private $username;
+        private $password;
 
-    // Connexion base de donnés avec PDO
-    $bddPDO = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    // echo "<p><strong>Connexion réussie</strong></p>";
+        public function __construct($host, $dbname, $username, $password){
+            $this->host = $host;
+            $this->dbname = $dbname;
+            $this->username = $username;
+            $this->password = $password;
+        }
+        
+        public function connexionBDD(){
+            try {
+                $bddPDO = new PDO("mysql:host=$this->host;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
+                $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                //echo "Connexion réussie";
+                return $bddPDO;
+            } catch (PDOException $e) {
+                echo "Erreur de connexion à la base de données: " . $e->getMessage();
+                exit();
+            }
+        }
 
-    // Affiche les erreurs
-    $bddPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        public function sessionStart(){
+            if (session_status() == PHP_SESSION_NONE) {
+                return session_start();
+            }
+        }
+
+    }
+
+
+    $connexion = new Connexion('localhost', 'quiznight', 'root', '');
+
+
+    $connexion->connexionBDD();
+    $connexion->sessionStart();
+    var_dump($_SESSION);
 ?>
