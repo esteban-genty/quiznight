@@ -30,8 +30,6 @@ class Ajouter extends Connexion {
     public function afficherAjoutReponse(){
         $requete_question = $this->requeteAjouter();
 
-        echo '<h1>Ajouter une Réponse</h1>';
-
         echo '<form action="" method="POST">';
         echo '<select name="question_quiz" id="question_quiz">';
         echo '<option value="choisir-question">Choisir une question</option>';
@@ -46,10 +44,10 @@ class Ajouter extends Connexion {
         echo '<input placeholder="Réponse 4" type="text" name="reponse4" required>';
 
         echo '<p>Choisir la réponse correcte :</p>';
-        echo '<input type="radio" name="correct" value="1"> Réponse 1<br>';
-        echo '<input type="radio" name="correct" value="2"> Réponse 2<br>';
-        echo '<input type="radio" name="correct" value="3"> Réponse 3<br>';
-        echo '<input type="radio" name="correct" value="4"> Réponse 4<br>';
+        echo '<input type="radio" name="correct" value="1">';
+        echo '<input type="radio" name="correct" value="2">';
+        echo '<input type="radio" name="correct" value="3">';
+        echo '<input type="radio" name="correct" value="4">';
 
         echo '<button type="submit" name="enregistrer">Ajouter</button>';
         echo '</form>';
@@ -119,7 +117,7 @@ class Ajouter extends Connexion {
     <title>QuizNight - Choix de catégories</title>
 
     <!-- Fichier styles -->
-    <link rel="stylesheet" href="../styles/ajouter-Reponse.css">
+    <link rel="stylesheet" href="../styles/ajouter-reponse.css">
     <link rel="stylesheet" href="../styles/styles.css">
 
     <!-- Police d'écriture -->
@@ -131,6 +129,7 @@ class Ajouter extends Connexion {
 <body>
     <main>
         <section class="ajouter-reponse">
+            <h1>Ajouter une Réponse</h1>
             <?php
                 $bddPDO = $connexion->connexionBDD();
                 $ajouter = new Ajouter($bddPDO);
