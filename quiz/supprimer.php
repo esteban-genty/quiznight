@@ -1,6 +1,14 @@
 <?php
     require_once(__DIR__ . '/../config/connexion.php');
-    class Supprimer {
+    class Supprimer extends Connexion {
+
+        private $bddPDO;
+
+        // Constructeur
+        public function __construct() {
+            parent::__construct('localhost', 'quiznight', 'root', '');
+            $this->bddPDO = $this->connexionBDD();  // On récupère la connexion à la BDD ici
+        }
 
         //Requete pour recuperer des catégories sur la bdd pour le menu select
         public function ReqSel() {
