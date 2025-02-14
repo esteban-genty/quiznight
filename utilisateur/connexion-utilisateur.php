@@ -17,12 +17,7 @@
 
         if ($user && password_verify($motdepasse, $user['motdepasse']))
         {
-            //session_start([
-               // 'cookie_lifetime' => 86400,
-                //'cookie_httponly' => true,
-                //'cookie_secure' => isset($_SERVER['HTTPS']),
-                //'use_strict_mode' => true
-           // ]);
+           
            //var_dump($_SESSION);
             $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
             $_SESSION['user_email'] = $user['email'];
