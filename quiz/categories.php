@@ -1,6 +1,40 @@
 <?php require_once(__DIR__ . '/../config/connexion.php') ?>
+<<<<<<< HEAD
 <?php require_once(__DIR__ . '/../classes/categories.php')?>
 
+=======
+
+<?php
+class Categories extends Connexion {
+
+    private $bddPDO;
+
+    public function __construct($bddPDO) {
+        parent::__construct('localhost', 'quiznight', 'root', '');
+        $this->bddPDO = $bddPDO;
+    } 
+
+    // Requête pour récupérer les titres des quizz
+    public function requeteQuizz() {        
+        $requete = "SELECT titre  FROM quizz";
+        $requete_quizz = $this->bddPDO->prepare($requete);
+        $requete_quizz->execute();
+        return $requete_quizz;
+    }
+
+    // Afficher les quizz sous forme de liens
+    public function afficherCategories() {
+        $requete_quizz = $this->requeteQuizz();
+
+        while ($choisir_quizz = $requete_quizz->fetch(PDO::FETCH_ASSOC)) {
+            foreach ($choisir_quizz as $table) {
+                echo '<a href="quiz-' . $table . '.php"> <div>' . $table . '</div></a>';
+            }
+        }
+    }
+}
+?>
+>>>>>>> fonctionnalité/quiz
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -47,4 +81,8 @@
 </main>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> fonctionnalité/quiz
