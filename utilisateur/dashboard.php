@@ -29,11 +29,34 @@
             <h3>Bienvenue dans votre dashboard,  <?php echo $_SESSION['nom']; ?></h3>
             <a href="../config/logout.php"><button class="deconnexion">Déconnexion</button></a>
 
+
+            <article class="infos">
+                <h3>QuizNight - Quizz</h3>
+                <div class="infos-droit">
+                    <ul>
+                        <li><a href="../quiz/ajouter-quiz.php" class="btn-ajouter">Ajouter</a></li>
+                        <li><a href="" class="btn-edit">Modifier</a></li>
+                        <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
+                    </ul>
+                </div>
+            </article>
+
             <article class="infos">
                 <h3>QuizNight - Questions</h3>
                 <div class="infos-droit">
                     <ul>
-                        <li><a href="quiz/ajouter-question" class="btn-ajouter">Ajouter</a></li>
+                        <li><a href="../quiz/ajouter-question.php" class="btn-ajouter">Ajouter</a></li>
+                        <li><a href="" class="btn-edit">Modifier</a></li>
+                        <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="infos">
+                <h3>QuizNight - Reponse</h3>
+                <div class="infos-droit">
+                    <ul>
+                        <li><a href="../quiz/ajouter-reponse.php" class="btn-ajouter">Ajouter</a></li>
                         <li><a href="" class="btn-edit">Modifier</a></li>
                         <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
                     </ul>
