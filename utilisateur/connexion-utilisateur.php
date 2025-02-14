@@ -7,15 +7,15 @@
         $this->db = $db;
     }
 
-    public function login($mail, $mdp) {
+    public function login($email, $motdepasse) {
         $stmt = $this->db->prepare("SELECT * FROM utilisateur WHERE email = :email");
-        $stmt->bindParam(':email', $mail);
+        $stmt->bindParam(':email', $email);
         
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($mdp, $user['motdepasse']))
+        if ($user && password_verify($motdepasse, $user['motdepasse']))
         {
             //session_start([
                // 'cookie_lifetime' => 86400,
@@ -23,8 +23,9 @@
                 //'cookie_secure' => isset($_SERVER['HTTPS']),
                 //'use_strict_mode' => true
            // ]);
-            $_SESSION['user_id'] = $user['utilisateur_id'];
-            $_SESSION['user_mail'] = $user['mail'];
+           //var_dump($_SESSION);
+            $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
+            $_SESSION['user_email'] = $user['email'];
             return true;
         } else {
             return false;

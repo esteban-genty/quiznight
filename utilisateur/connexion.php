@@ -1,27 +1,29 @@
 <?php
-
+session_start();
 // connexion.php
-require_once 'connexion-utilisateur.php';
-require_once 'utilisateur.php';
+require_once 'utilisateur/connexion-utilisateur.php';
+require_once 'utilisateur/utilisateur.php';
 
 
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['id_utilisateur'])) {
     header('Location: dashboard.php');
     exit;
 }
 
 $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
-    $mdp = htmlspecialchars($_POST['mdp']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['motdepasse'])) {
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $motdepasse = htmlspecialchars($_POST['motdepasse']);
+
+
 
     $database = new Connexion('localhost','quiznight','root','');
     $db = $database->connexionBDD();
 
-    $auth = new User($db);
-    if ($auth->login($mail, $mdp)) {
+    $connexion = new User($db);
+    if ($connexion->login($email, $motdepasse)) {
         header('Location: dashboard.php');
         exit;
     } else {
@@ -54,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
             <form method="POST">
                
-                <label for="mail">Email :</label>
-                <input type="email" name="mail" required>
+                <label for="email">Email :</label>
+                <input type="email" name="email" required>
 
-                <label for="mdp">Mot de passe :</label>
-                <input type="password" name="mdp" required>
+                <label for="motdepasse">Mot de passe :</label>
+                <input type="password" name="motdepasse" required>
 
                 <div id="buttonbox">
                     <button type="submit">Se connecter</button>
