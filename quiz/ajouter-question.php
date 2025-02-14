@@ -42,11 +42,10 @@ class AjouterQuestion extends Connexion {
 
             // Vérification de la question et du quiz
             $question = htmlspecialchars($_POST['question']);
-            $id_quizz = $_POST['question_quiz']; // Récupération de l'ID du quiz sélectionné
+            $id_quizz = $_POST['question_quiz'];
 
             if (!empty($question) && !empty($id_quizz)) {
 
-                // Insertion de la question dans la base de données
                 $requete = $this->bddPDO->prepare("INSERT INTO `question` (question, id_quizz) VALUES (:question, :id_quizz)");
 
                 $requete->bindValue(':question', $question);

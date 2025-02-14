@@ -14,7 +14,7 @@ class Quiz_animal extends Connexion {
 
 
     public function requeteQuestions() {
-        $requete = "SELECT id_question, question FROM question WHERE id_quizz = 3";
+        $requete = "SELECT id_question, question FROM question WHERE id_quizz = 4";
         $requete_questions = $this->bddPDO->prepare($requete);
         $requete_questions->execute();
         return $requete_questions;

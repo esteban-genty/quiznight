@@ -23,6 +23,13 @@ class Connexion{
             exit();
         }
     }
+
+    public function sessionStart(){
+        if (session_status() == PHP_SESSION_NONE) {
+            return session_start();
+        }
+    }
+
 }
 
 
@@ -30,4 +37,6 @@ $connexion = new Connexion('localhost', 'quiznight', 'root', '');
 
 
 $connexion->connexionBDD();
+$connexion->sessionStart();
+var_dump($_SESSION);
 ?>
