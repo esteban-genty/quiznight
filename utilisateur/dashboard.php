@@ -26,8 +26,8 @@
 
         <section class="dashboard">
 
-            <h3>Bienvenue dans votre dashboard, <?php echo "Estéban Genty"; ?></h3>
-            <button class="deconnexion">Déconnexion</button>
+            <h3>Bienvenue dans votre dashboard,  <?php echo $_SESSION['nom']; ?></h3>
+            <a href="../config/logout.php"><button class="deconnexion">Déconnexion</button></a>
 
             <article class="infos">
                 <h3>QuizNight - Questions</h3>
