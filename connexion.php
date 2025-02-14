@@ -1,8 +1,8 @@
 <?php
 
 // connexion.php
-require_once 'classes/Database.php';
-require_once 'classes/User.php';
+require_once 'connexion-utilisateur.php';
+require_once 'utilisateur.php';
 
 
 
@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = filter_var($_POST['mail'], FILTER_SANITIZE_EMAIL);
     $mdp = htmlspecialchars($_POST['mdp']);
 
-    $database = new Database();
-    $db = $database->connect();
+    $database = new Connexion('localhost','quiznight','root','');
+    $db = $database->connexionBDD();
 
     $auth = new User($db);
     if ($auth->login($mail, $mdp)) {
