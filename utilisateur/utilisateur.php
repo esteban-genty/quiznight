@@ -40,7 +40,7 @@
         }
 
         public function login($mail, $mdp) {
-            $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE mail = :mail");
+            $stmt = $this->db->prepare("SELECT * FROM utilisateur WHERE mail = :mail");
             $stmt->bindParam(':mail', $mail);
             $stmt->execute();
         

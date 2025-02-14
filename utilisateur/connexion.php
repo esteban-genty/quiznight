@@ -1,8 +1,8 @@
 <?php
 session_start();
 // connexion.php
-require_once 'utilisateur/connexion-utilisateur.php';
-require_once 'utilisateur/utilisateur.php';
+require_once(__DIR__ . '/../config/connexion.php');
+require_once(__DIR__ . '/../utilisateur/utilisateur.php');
 
 
 
@@ -39,17 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['motd
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
-    <link rel="stylesheet" href="styles/connexion.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/root.css">
-
+    <link rel="stylesheet" href="/quiznight/styles/connexion.css">
+    <link rel="stylesheet" href="/quiznight/styles/root.css">
+    <link rel="stylesheet" href="/quiznight/styles/header.css">
+    <link rel="stylesheet" href="/quiznight/styles/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php require_once(__DIR__ . '/structure/header.php'); ?>
+<?php require_once(__DIR__ . '/../structure/header.php'); ?>
     <main>
       
    
@@ -74,6 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['motd
         </section>
      
     </main>
-    <?php require_once(__DIR__ . '/structure/footer.php'); ?>
+    <?php require_once(__DIR__ . '/../structure/footer.php'); ?>
 </body>
 </html>
