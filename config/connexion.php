@@ -1,3 +1,4 @@
+<?php
 class Connexion{
     private $host;
     private $dbname;
@@ -32,7 +33,10 @@ class Connexion{
 }
 
 
-    $connexion->connexionBDD();
-    $connexion->sessionStart();
-    // var_dump($_SESSION);
+$connexion = new Connexion('localhost', 'quiznight', 'root', '');
+
+
+$connexion->connexionBDD();
+$connexion->sessionStart();
+// var_dump($_SESSION);
 ?>
