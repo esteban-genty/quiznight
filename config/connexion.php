@@ -38,5 +38,5 @@ $connexion = new Connexion('localhost', 'quiznight', 'root', '');
 
 $connexion->connexionBDD();
 $connexion->sessionStart();
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>

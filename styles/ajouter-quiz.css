@@ -1,0 +1,45 @@
+.ajouter-quiz{
+    height: 100vh;
+    background-color: #0035D5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.ajouter-quiz h1{
+    font-family: "lobster";
+    font-size: 2rem;
+    color: white;
+}
+
+.ajouter-quiz input{
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border: 2px solid#0035D5;
+    border-radius: 20px;
+    color: #0035D5;
+}
+
+.ajouter-quiz form{
+    border-radius: 15px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+}
+
+.ajouter-quiz button{
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0035D5;
+    color: white;
+}

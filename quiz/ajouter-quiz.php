@@ -2,7 +2,7 @@
 
 <?php
 
-class AjouterQuizz extends Connexion {
+class Ajouterquizz extends Connexion {
 
     private $bddPDO;
 
@@ -12,7 +12,7 @@ class AjouterQuizz extends Connexion {
         $this->bddPDO = $this->connexionBDD();  // On récupère la connexion à la BDD ici
     }
 
-    public function afficherAjoutQuizz(){
+    public function afficherAjoutquizz(){
         echo '<h1>Ajouter un quizz</h1>';
         echo '<form action="" method="POST">';
         echo '<input placeholder="titre" type="text" name="titre" required>';
@@ -21,7 +21,7 @@ class AjouterQuizz extends Connexion {
         echo '</form>';
     }
 
-    public function AjouterQuizz(){
+    public function Ajouterquizz(){
         // Vérifier si la session est démarrée avant d'y accéder
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -49,7 +49,7 @@ class AjouterQuizz extends Connexion {
                 $result = $requete->execute();
 
                 if ($result) {
-                    echo "Quizz ajoutée avec succès";
+                    echo "quizz ajoutée avec succès";
                 } else {
                     echo "Erreur lors de l'ajout du quizz";
                 }
@@ -67,14 +67,14 @@ class AjouterQuizz extends Connexion {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Site de quiz">
-    <meta name="keywords" content="QuizNight, Quiz en ligne">
+    <meta name="description" content="Site de quizz">
+    <meta name="keywords" content="quizzNight, quizz en ligne">
     <meta name="author" content="Estéban, Antoine, Sébastien">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuizNight - Ajouter une question</title>
+    <title>quizzNight - Ajouter une question</title>
 
     <!-- Fichier styles -->
-    <link rel="stylesheet" href="../styles/ajouter-question.css">
+    <link rel="stylesheet" href="../styles/ajouter-quiz.css">
     <link rel="stylesheet" href="../styles/styles.css">
 
     <!-- Police d'écriture -->
@@ -85,12 +85,12 @@ class AjouterQuizz extends Connexion {
 
 <body>
     <main>
-        <section class="ajouter-quizz">
+        <section class="ajouter-quiz">
             <?php
                 // Connexion à la base de données
-                $quizz = new AjouterQuizz();
-                $quizz->afficherAjoutQuizz();
-                $quizz->AjouterQuizz();
+                $quizz = new Ajouterquizz();
+                $quizz->afficherAjoutquizz();
+                $quizz->Ajouterquizz();
             ?>
         </section>
     </main>
