@@ -1,10 +1,6 @@
 <?php
-    session_start();
-    require_once(__DIR__ . '/classes/Database.php');
-    require_once(__DIR__ . '/classes/User.php');
-    
-    $database = new Database();
-    $db = $database->connect();
+    require_once(__DIR__ . '/../config/connexion.php');
+    require_once(__DIR__ . '/../classes/utilisateur.php');
 
     $user = new User($db);
     $erreur_msg = "";
