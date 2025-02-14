@@ -1,6 +1,6 @@
 <header>
     <a class="aTitre" href="accueil.php"><h1>Accueil</h1></a>
-    <a class="aImg" href="accueil.php"><img src="assets/quiznight.png" alt="logo quiznight"></a>
+    <a class="aImg" href="accueil.php"><img src="/quiznight/assets/quiznight.png" alt="logo quiznight"></a>
     <nav>
         <ul>
             <?php 

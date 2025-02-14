@@ -1,6 +1,6 @@
 <footer>
     <div>
-        <img src="assets/quiznight.png" alt="">
+        <img src="/quiznight/assets/quiznight.png" alt="">
         <nav>
             <ul>
                 <li><a href="accueil.png">Accueil</a></li>
