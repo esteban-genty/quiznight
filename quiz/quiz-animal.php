@@ -126,7 +126,6 @@ class Quiz_animal extends Connexion {
 
         </section>
     </main>
-    <?php require_once __DIR__ . '/../structure/footer.php'; ?>
 
 
 </body>

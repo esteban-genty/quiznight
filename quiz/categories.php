@@ -60,7 +60,7 @@ class Categories extends Connexion {
     <section class="quiz-categories">
 
         <img src="../assets/quiznight.png" />
-        <h1>Quiz</h1>
+        <h1>QuizNight - Categories</h1>
 
         <?php
             // Création de l'objet Connexion pour récupérer l'objet PDO

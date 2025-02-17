@@ -3,7 +3,7 @@
         <img src="/quiznight/assets/quiznight.png" alt="">
         <nav>
             <ul>
-                <li><a href="accueil.png">Accueil</a></li>
+                <li><a href="/../structure/index.php">Accueil</a></li>
                 <li><a href="#">Création de catégorie</a></li>
                 <li><a href="#">Création de quiz</a></li>
             </ul>

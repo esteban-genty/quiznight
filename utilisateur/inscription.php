@@ -9,9 +9,9 @@
 
     if (isset($_POST['submitbutton'])) {
         $user->nom = $_POST['nom'];
-        $user->mail = $_POST['mail'];
-        $user->mdp = $_POST['mdp'];
-        $user->mdp_confirmation = $_POST['mdp_confirmation'];
+        $user->email = $_POST['email'];
+        $user->motdepasse = $_POST['motdepasse'];
+        $user->motdepasse_confirmation = $_POST['motdepasse_confirmation'];
 
         $erreur_msg = $user->register();
     }
@@ -41,11 +41,11 @@
                     <label for="">Pseudo</label>
                     <input type="text" name="nom" id="nom" required>
                     <label for="">Email</label>
-                    <input placeholder="quiz@night.fr" type="email" name="mail" id="mail" required>
+                    <input placeholder="quiz@night.fr" type="email" name="email" id="email" required>
                     <label for="">Mot de passe</label>
-                    <input type="password" name="mdp" id="mdp" required>
+                    <input type="password" name="motdepasse" id="motdepasse" required>
                     <label for="">Confirmation du mot de passe</label>
-                    <input type="password" name="mdp_confirmation" id="mdp_confirmation" required>
+                    <input type="password" name="motdepasse_confirmation" id="motdepasse_confirmation" required>
                     <?php if (!empty($erreur_msg)) : ?>
                         <p style="color: red; text-align: center;"> <?= htmlspecialchars($erreur_msg) ?> </p>
                     <?php endif; ?>

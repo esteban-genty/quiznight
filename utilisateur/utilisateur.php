@@ -4,34 +4,34 @@
         private $table_name = "utilisateur";
 
         public $nom;
-        public $mail;
-        public $mdp;
-        public $mdp_confirmation;
+        public $email;
+        public $motdepasse;
+        public $motdepasse_confirmation;
 
         public function __construct($db) {
             $this->db = $db;
         }
 
         public function register() {
-            if ($this->mdp !== $this->mdp_confirmation) {
+            if ($this->motdepasse !== $this->motdepasse_confirmation) {
                 return "Les mots de passe ne correspondent pas";
             }
 
-            if (!filter_var($this->mail, FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
                 return "Adresse e-mail invalide";
             }
 
-            $this->mdp = password_hash($this->mdp, PASSWORD_BCRYPT);
+            $this->motdepasse = password_hash($this->motdepasse, PASSWORD_BCRYPT);
 
-            $query = "INSERT INTO " . $this->table_name . " (nom, mail, mdp) VALUES (:nom, :mail, :mdp)";
+            $query = "INSERT INTO " . $this->table_name . " (nom, email, motdepasse) VALUES (:nom, :email, :motdepasse)";
             $stmt = $this->db->prepare($query);
 
             $stmt->bindParam(':nom', $this->nom);
-            $stmt->bindParam(':mail', $this->mail);
-            $stmt->bindParam(':mdp', $this->mdp);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':motdepasse', $this->motdepasse);
 
             if ($stmt->execute()) {
-                $_SESSION['utilisateur'] = ['mail' => $this->mail];
+                $_SESSION['utilisateur'] = ['email' => $this->email];
                 header('Location: inscription.php');
                 exit();
             } else {
@@ -39,17 +39,17 @@
             }
         }
 
-        public function login($mail, $mdp) {
-            $stmt = $this->db->prepare("SELECT * FROM utilisateur WHERE mail = :mail");
-            $stmt->bindParam(':mail', $mail);
+        public function login($email, $motdepasse) {
+            $stmt = $this->db->prepare("SELECT * FROM utilisateur WHERE email = :email");
+            $stmt->bindParam(':email', $email);
             $stmt->execute();
         
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
-            if ($user && password_verify($mdp, $user['mdp'])) { // verifie  hash BCRYPT
+            if ($user && password_verify($motdepasse, $user['motdepasse'])) { // verifie  hash BCRYPT
                 session_start();
                 $_SESSION['user_id'] = $user['id_utilisateur'];
-                $_SESSION['user_mail'] = $user['mail'];
+                $_SESSION['user_email'] = $user['email'];
                 header('Location: dashboard.php');
                 exit;
             } else {

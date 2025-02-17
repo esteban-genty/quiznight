@@ -1,4 +1,5 @@
 footer {
+    margin-top: 20%;
     background-color: var(--unfocus-color);
     height: 200px;
     width: 100%;
