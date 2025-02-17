@@ -14,6 +14,9 @@
     <!-- Fichier styles -->
     <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/root.css">
 
     <!-- Police d'écriture -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +25,12 @@
 </head>
 
 <body>
+    <?php require_once __DIR__ . '/../structure/header.php'; ?>
     <main>
 
         <section class="dashboard">
 
-            <h3>Bienvenue dans votre dashboard,  <?php echo $_SESSION['nom']; ?></h3>
+            <h2>Bienvenue dans votre dashboard,  <?php echo htmlspecialchars($_SESSION['utilisateur']['nom']); ?></h2>
             <a href="../config/logout.php"><button class="deconnexion">Déconnexion</button></a>
 
 
@@ -36,7 +40,7 @@
                     <ul>
                         <li><a href="../quiz/ajouter-quiz.php" class="btn-ajouter">Ajouter</a></li>
                         <li><a href="" class="btn-edit">Modifier</a></li>
-                        <li><a href="plats/supprimer-plats" class="btn-delete">Supprimer</a></li>
+                        <li><a href="../quiz/supprimer.php" class="btn-delete">Supprimer</a></li>
                     </ul>
                 </div>
             </article>
@@ -64,10 +68,8 @@
             </article>
 
         </section>
-
-
-
     </main>
+    <?php require_once __DIR__ . '/../structure/footer.php';?>
 
 
 

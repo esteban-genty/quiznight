@@ -4,11 +4,6 @@ session_start();
 
 // Connexion à la base de données
 $connexion = Connexion::getInstance()->getPdo();
-if ($connexion) {
-    echo "Connexion réussie à la BDD !";
-} else {
-    echo "Échec de la connexion à la BDD.";
-}
 
 class Connexion {
     private static $instance = null;
@@ -94,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-<?php require_once __DIR__ . '/structure/header.php';?>
+<?php require_once __DIR__ . '/../structure/header.php';?>
     <main>
         <h1>Connexion</h1>
         <section class="formsection">
@@ -114,6 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
         </section>
     </main>
-    <?php require_once __DIR__ . '/structure/footer.php'; ?>
+    <?php require_once __DIR__ . '/../structure/footer.php'; ?>
 </body>
 </html>

@@ -81,6 +81,9 @@ class AjouterQuestion extends Connexion {
     <!-- Fichier styles -->
     <link rel="stylesheet" href="../styles/ajouter-question.css">
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/root.css">
 
     <!-- Police d'écriture -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,7 +92,7 @@ class AjouterQuestion extends Connexion {
 </head>
 
 <body>
-    <?php require_once __DIR__ . '/structure/header.php';?>
+    <?php require_once __DIR__ . '/../structure/header.php';?>
     <main>
         <section class="ajouter-question">
             <?php
@@ -103,6 +106,6 @@ class AjouterQuestion extends Connexion {
             ?>
         </section>
     </main>
-    <?php require_once __DIR__ . '/structure/footer.php';?>
+    <?php require_once __DIR__ . '/../structure/footer.php';?>
 </body>
 </html>
