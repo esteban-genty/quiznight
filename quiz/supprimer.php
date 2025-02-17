@@ -43,7 +43,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Supprimer Quiz - QuizNight</title>
 </head>
 <body>
     <?php require_once(__DIR__ . '/../structure/header.php'); ?>
