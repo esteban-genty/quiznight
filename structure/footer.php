@@ -3,9 +3,9 @@
         <img src="/quiznight/assets/quiznight.png" alt="">
         <nav>
             <ul>
-                <li><a href="accueil.png">Accueil</a></li>
-                <li><a href="#">Création de catégorie</a></li>
-                <li><a href="#">Création de quiz</a></li>
+                <li><a href="./index.php">Accueil</a></li>
+                <li><a href="./quiz/ajouter-quiz.php">Création de question</a></li>
+                <li><a href="./quiz/ajouter-reponse.php">Création de quiz</a></li>
             </ul>
         </nav>
         <div class="divVide">

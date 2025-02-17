@@ -3,7 +3,7 @@
 <?php
 
 if (empty($_SESSION['utilisateur'])) {
-    header("Location: index.php");
+    header("Location: /quiznight/index.php");
     exit();
 }
 
