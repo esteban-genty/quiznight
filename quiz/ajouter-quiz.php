@@ -2,6 +2,11 @@
 
 <?php
 
+if (empty($_SESSION['utilisateur'])) {
+    header("Location: index.php");
+    exit();
+}
+
 class Ajouterquizz extends Connexion {
 
     private $bddPDO;
@@ -9,7 +14,7 @@ class Ajouterquizz extends Connexion {
     // Constructeur
     public function __construct() {
         parent::__construct('localhost', 'quiznight', 'root', '');
-        $this->bddPDO = $this->connexionBDD();  // On récupère la connexion à la BDD ici
+        $this->bddPDO = $this->connexionBDD();
     }
 
     public function afficherAjoutquizz(){
@@ -29,10 +34,10 @@ class Ajouterquizz extends Connexion {
         if (isset($_POST['enregistrer'])) {
             $titre = strtolower(htmlspecialchars($_POST['titre']));
             $description = htmlspecialchars($_POST['description']);
-            
-            // Vérifier si l'utilisateur est bien connecté avant d'accéder à $_SESSION
-            if (isset($_SESSION['id_utilisateur'])) {
-                $id_utilisateur = $_SESSION['id_utilisateur'];
+        
+
+            if (isset($_SESSION['utilisateur']['id_utilisateur'])) {
+                $id_utilisateur = $_SESSION['utilisateur']['id_utilisateur'];
             } else {
                 echo "Utilisateur non connecté.";
                 return;

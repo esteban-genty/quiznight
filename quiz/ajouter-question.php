@@ -40,7 +40,6 @@ class AjouterQuestion extends Connexion {
     public function ajouterQuestion(){
         if (isset($_POST['enregistrer'])) {
 
-            // Vérification de la question et du quiz
             $question = htmlspecialchars($_POST['question']);
             $id_quizz = $_POST['question_quiz'];
 

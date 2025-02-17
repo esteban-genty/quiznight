@@ -1,5 +1,11 @@
 <?php
     require_once(__DIR__ . '/../config/connexion.php');
+
+    if (empty($_SESSION['utilisateur'])) {
+        header("Location: index.php");
+        exit();
+    }
+    
     class Supprimer extends Connexion {
 
         private $bddPDO;

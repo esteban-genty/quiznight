@@ -2,6 +2,11 @@
 
 <?php
 
+if (empty($_SESSION['utilisateur'])) {
+    header("Location: index.php");
+    exit();
+}
+
 class Ajouter extends Connexion {
 
     private $bddPDO;
@@ -11,21 +16,12 @@ class Ajouter extends Connexion {
         $this->bddPDO = $bddPDO;
     }
 
-
-
-
-
-
     public function requeteAjouter(){
         $requete = "SELECT id_question, question FROM question";
         $requete_question = $this->bddPDO->prepare($requete);
         $requete_question->execute();
         return $requete_question;
     }
-
-
-
-
 
     public function afficherAjoutReponse(){
         $requete_question = $this->requeteAjouter();
@@ -53,30 +49,22 @@ class Ajouter extends Connexion {
         echo '</form>';
     }
 
-
-
-
-
-
     public function ajouterReponse(){
         if (isset($_POST['enregistrer'])) {
 
-            // Récupération des réponses
             $reponse1 = htmlspecialchars($_POST['reponse1']);
             $reponse2 = htmlspecialchars($_POST['reponse2']);
             $reponse3 = htmlspecialchars($_POST['reponse3']);
             $reponse4 = htmlspecialchars($_POST['reponse4']);
 
-            // Vérification que toutes les réponses sont remplies
             if (!empty($reponse1) && !empty($reponse2) && !empty($reponse3) && !empty($reponse4)) {
 
                 $question_id = $_POST['question_quiz'];
 
                 if (isset($_POST['correct'])) {
 
-                    $correct = $_POST['correct']; // 1, 2, 3, ou 4
+                    $correct = $_POST['correct'];
 
-                    // Insertion des réponses avec la valeur correcte
                     $this->insererReponse($reponse1, ($correct == 1) ? 1 : 0, $question_id);
                     $this->insererReponse($reponse2, ($correct == 2) ? 1 : 0, $question_id);
                     $this->insererReponse($reponse3, ($correct == 3) ? 1 : 0, $question_id);

@@ -1,8 +1,4 @@
 <?php
-if (empty($_SESSION['utilisateur'])) {
-    header("Location: index.php");
-    exit();
-}
 
 
 class Connexion{
