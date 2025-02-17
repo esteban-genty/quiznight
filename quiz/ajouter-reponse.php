@@ -127,6 +127,7 @@ class Ajouter extends Connexion {
 </head>
 
 <body>
+    <?php require_once __DIR__ . '/structure/header.php';?>
     <main>
         <section class="ajouter-reponse">
             <h1>Ajouter une Réponse</h1>
@@ -138,5 +139,6 @@ class Ajouter extends Connexion {
             ?>
         </section>
     </main>
+    <?php require_once __DIR__ . '/structure/footer.php';?>
 </body>
 </html>
